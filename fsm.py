@@ -30,7 +30,6 @@ class TocMachine(GraphMachine):
         reply_token = event.reply_token
         sending_str = "https://www.facebook.com/NeVeRLosEs/" + "\n\n" + "https://www.instagram.com/nln1nl/" + "\n\n" + "https://www.youtube.com/c/NLNL87/featured"
         send_text_message(reply_token, sending_str)
-        send_text_message(reply_token, sending_str)
         self.go_back(event)
 
     def on_exit_information(self, event):
