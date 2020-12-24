@@ -23,7 +23,7 @@ machine = TocMachine(
             "conditions": "is_going_to_show_channel",
         },
         {
-            "trigger": "advance",
+            "trigger": "detail",
             "source": "show_channel",
             "dest": "information",
             "conditions": "is_going_to_information",
@@ -105,7 +105,7 @@ def webhook_handler():
         if machine.state == "user":
             response = machine.advance(event)
         if machine.state == "show_channel":
-            response = machine.advance(event)
+            response = machine.detail(event)
         if response == False:
             send_text_message(event.reply_token, "Not Entering any State")
 
