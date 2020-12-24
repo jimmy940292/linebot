@@ -17,14 +17,14 @@ machine = TocMachine(
     states=["user", "show_channel", "information"],
     transitions=[
         {
-            "trigger": "detail",
-            "source": "information",
+            "trigger": "advance",
+            "source": "user",
             "dest": "show_channel",
             "conditions": "is_going_to_show_channel",
         },
         {
-            "trigger": "advance",
-            "source": "user",
+            "trigger": "detail",
+            "source": "show_channel",
             "dest": "information",
             "conditions": "is_going_to_information",
         },
@@ -80,7 +80,7 @@ def webhook_handler():
         print(f"REQUEST BODY: \n{body}")
         if machine.state == "user":
             response = machine.advance(event)
-        if machine.state == "information":
+        if machine.state == "show_channel":
             response = machine.detail(event)
 
         if response == False:

@@ -28,10 +28,8 @@ class TocMachine(GraphMachine):
         print("I'm entering state2")
 
         reply_token = event.reply_token
-        sending_str = "https://www.facebook.com/NeVeRLosEs/" + "\n" + "https://www.instagram.com/nln1nl/" + "\n" + "https://www.youtube.com/c/NLNL87/featured"
+        sending_str = "https://www.facebook.com/NeVeRLosEs/" + "\n\n" + "https://www.instagram.com/nln1nl/" + "\n\n" + "https://www.youtube.com/c/NLNL87/featured"
         send_text_message(reply_token, sending_str)
-        #send_text_message(reply_token, "https://www.instagram.com/nln1nl/")
-        #send_text_message(reply_token, "https://www.youtube.com/c/NLNL87/featured")
         self.go_back()
 
     def on_exit_information(self):
