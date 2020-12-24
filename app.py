@@ -80,7 +80,7 @@ def webhook_handler():
         print(f"REQUEST BODY: \n{body}")
         if machine.state == "user":
             response = machine.advance(event)
-        if machine.state == "show_channel":
+        elif machine.state == "show_channel":
             response = machine.detail(event)
 
         if response == False:
