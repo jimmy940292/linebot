@@ -31,7 +31,7 @@ class TocMachine(GraphMachine):
         send_text_message(reply_token, "https://www.facebook.com/NeVeRLosEs/")
         send_text_message(reply_token, "https://www.instagram.com/nln1nl/")
         send_text_message(reply_token, "https://www.youtube.com/c/NLNL87/featured")
-        self.go_back()
+        self.go_back(event)
 
     def on_exit_information(self):
         print("Leaving state2")
