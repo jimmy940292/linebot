@@ -21,7 +21,7 @@ class TocMachine(GraphMachine):
         reply_token = event.reply_token
         send_text_message(reply_token, "https://www.twitch.tv/never_loses")
 
-    def on_exit_show_channel(self):
+    def on_exit_show_channel(self, event):
         print("Leaving state1")
 
     def on_enter_information(self, event):
@@ -32,5 +32,5 @@ class TocMachine(GraphMachine):
         send_text_message(reply_token, sending_str)
         self.go_back()
 
-    def on_exit_information(self):
+    def on_exit_information(self, event):
         print("Leaving state2")
