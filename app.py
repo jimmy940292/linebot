@@ -14,21 +14,21 @@ load_dotenv()
 
 
 machine = TocMachine(
-    states=["user", "state1", "state2"],
+    states=["user", "show_channel", "information"],
     transitions=[
         {
             "trigger": "advance",
             "source": "user",
-            "dest": "state1",
-            "conditions": "is_going_to_state1",
+            "dest": "show_channel",
+            "conditions": "is_going_to_show_channel",
         },
         {
             "trigger": "advance",
-            "source": "user",
-            "dest": "state2",
-            "conditions": "is_going_to_state2",
+            "source": "show_channel",
+            "dest": "information",
+            "conditions": "is_going_to_information",
         },
-        {"trigger": "go_back", "source": ["state1", "state2"], "dest": "user"},
+        {"trigger": "go_back", "source": ["show_channel", "information"], "dest": "user"},
     ],
     initial="user",
     auto_transitions=False,
@@ -52,7 +52,7 @@ line_bot_api = LineBotApi(channel_access_token)
 parser = WebhookParser(channel_secret)
 
 
-@app.route("/callback", methods=["POST"])
+@app.route("/", methods=["POST"])
 def callback():
     signature = request.headers["X-Line-Signature"]
     # get request body as text
