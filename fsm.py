@@ -21,7 +21,6 @@ class TocMachine(GraphMachine):
         reply_token = event.reply_token
         send_text_message(reply_token, "https://www.twitch.tv/never_loses")
 
-
     def on_exit_show_channel(self):
         print("Leaving state1")
 
