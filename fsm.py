@@ -13,9 +13,7 @@ class TocMachine(GraphMachine):
 
     def on_enter_fsm(self, event):
         reply_token = event.reply_token
-            
-        line_bot_api.reply_message(reply_token, ImageSendMessage(original_content_url="https://jimmy30213.herokuapp.com/show-fsm", preview_image_url="https://jimmy30213.herokuapp.com/show-fsm"))
-        
+        send_fsm_graph(reply_token)
         self.go_back(event);
 
     def on_exit_fsm(self, event):

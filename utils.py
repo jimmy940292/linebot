@@ -13,6 +13,8 @@ def send_text_message(reply_token, text):
 
     return "OK"
 
+def send_fsm_graph(reply_token):
+	line_bot_api.reply_message(reply_token, ImageSendMessage(original_content_url="https://jimmy30213.herokuapp.com/show-fsm", preview_image_url="https://jimmy30213.herokuapp.com/show-fsm")) 
 
 """
 def send_image_url(id, img_url):
