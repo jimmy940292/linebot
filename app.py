@@ -14,26 +14,44 @@ load_dotenv()
 
 
 machine = TocMachine(
-    states=["user", "show_channel", "information"],
+    states=["init", "NL_channel", "NL_information", "Roger_channel", "Roger_information"],
     transitions=[
         {
             "trigger": "advance",
-            "source": "user",
+            "source": "init",
             "dest": "show_channel",
             "conditions": "is_going_to_show_channel",
         },
         {
+            "trigger": "advance",
+            "source": "init",
+            "dest": "NL_channel",
+            "conditions": "is_going_to_NL_channel",
+        },
+        {
             "trigger": "detail",
-            "source": "show_channel",
-            "dest": "information",
-            "conditions": "is_going_to_information",
+            "source": "NL_channel",
+            "dest": "NL_information",
+            "conditions": "is_going_to_NL_information",
+        },
+        {
+            "trigger": "advance",
+            "source": "init",
+            "dest": "Roger_channel",
+            "conditions": "is_going_to_Roger_channel",
+        },
+        {
+            "trigger": "detail",
+            "source": "Roger_channel",
+            "dest": "Roger_information",
+            "conditions": "is_going_to_Roger_information",
         },
         {
             "trigger": "go_back",
-            "source":  "information",
-            "dest": "user"},
+            "source":  ["show_channel","NL_information","Roger_information"],
+            "dest": "init"},
     ],
-    initial="user",
+    initial="init",
     auto_transitions=False,
     show_conditions=True,
 )
@@ -78,13 +96,13 @@ def webhook_handler():
             continue
         print(f"\nFSM STATE: {machine.state}")
         print(f"REQUEST BODY: \n{body}")
-        if machine.state == "user":
+        if machine.state == "init":
             response = machine.advance(event)
-        elif machine.state == "show_channel":
+        elif machine.state == "NL_channel" or machine.state == "Roger_channel":
             response = machine.detail(event)
 
         if response == False:
-            send_text_message(event.reply_token, "Not Entering any State")
+            send_text_message(event.reply_token, "無效的指令")
 
     return "OK"
 

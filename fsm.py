@@ -9,28 +9,63 @@ class TocMachine(GraphMachine):
 
     def is_going_to_show_channel(self, event):
         text = event.message.text
-        return text.lower() == "!show"
-
-    def is_going_to_information(self, event):
-        text = event.message.text
-        return text.lower() == "!info"
+        return text.lower() == "頻道"
 
     def on_enter_show_channel(self, event):
-        print("I'm entering state1")
 
         reply_token = event.reply_token
-        send_text_message(reply_token, "https://www.twitch.tv/never_loses")
+        sending_str =  "NeVeR_LosEs\n" +"nl\n\n" + "羅傑\n" + "roger\n\n"
+        send_text_message(reply_token, sending_str)
+        self.go_back(event);
 
     def on_exit_show_channel(self, event):
-        print("Leaving state1")
 
-    def on_enter_information(self, event):
-        print("I'm entering state2")
+    def is_going_to_NL_channel(self, event):
+        text = event.message.text
+        return text.lower() == "nl"
+
+    def on_enter_NL_channel(self, event):
 
         reply_token = event.reply_token
-        sending_str = "https://www.facebook.com/NeVeRLosEs/" + "\n\n" + "https://www.instagram.com/nln1nl/" + "\n\n" + "https://www.youtube.com/c/NLNL87/featured"
+        sending_str =  "https://www.twitch.tv/never_loses"
+        send_text_message(reply_token, sending_str)
+
+    def on_exit_NL_channel(self, event):
+
+    def is_going_to_NL_information(self, event):
+        text = event.message.text
+        return text.lower() == "資訊"
+
+    def on_enter_NL_information(self, event):
+
+        reply_token = event.reply_token
+        sending_str = "FB:\n"+"https://www.facebook.com/NeVeRLosEs/\n\n" + "IG:\n" + "https://www.instagram.com/nln1nl/\n\n" + "YT:\n" + "https://www.youtube.com/c/NLNL87/featured"
         send_text_message(reply_token, sending_str)
         self.go_back(event)
 
-    def on_exit_information(self, event):
-        print("Leaving state2")
+    def on_exit_NL_information(self, event):
+
+    def is_going_to_Roger_channel(self, event):
+        text = event.message.text
+        return text.lower() == "roger"
+
+    def on_enter_Roger_channel(self, event):
+
+        reply_token = event.reply_token
+        sending_str =  "https://www.twitch.tv/roger9527"
+        send_text_message(reply_token, sending_str)
+
+    def on_exit_Roger_channel(self, event):
+
+    def is_going_to_Roger_information(self, event):
+        text = event.message.text
+        return text.lower() == "資訊"
+
+    def on_enter_Roger_information(self, event):
+
+        reply_token = event.reply_token
+        sending_str = "FB:\n"+"https://www.facebook.com/Roger95279527/\n\n" + "IG:\n" + "https://www.instagram.com/roger95279527/\n\n"
+        send_text_message(reply_token, sending_str)
+        self.go_back(event)
+
+    def on_exit_Roger_information(self, event):
