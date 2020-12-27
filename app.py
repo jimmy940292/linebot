@@ -73,7 +73,7 @@ line_bot_api = LineBotApi(channel_access_token)
 parser = WebhookParser(channel_secret)
 
 
-@app.route("/webhook", methods=["POST"])
+@app.route("/", methods=["POST"])
 def webhook_handler():
     signature = request.headers["X-Line-Signature"]
     # get request body as text
@@ -98,9 +98,10 @@ def webhook_handler():
         print(f"REQUEST BODY: \n{body}")
         if machine.state == "init":
             response = machine.advance(event)
-        elif machine.state == "NL_channel" or machine.state == "Roger_channel":
+        elif machine.state == "NL_channel":
             response = machine.detail(event)
-
+        elif machine.state == "Roger_channel":
+            response = machine.detail(event)
         if response == False:
             send_text_message(event.reply_token, "無效的指令")
 
