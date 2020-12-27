@@ -27,7 +27,7 @@ class TocMachine(GraphMachine):
     def on_enter_show_channel(self, event):
 
         reply_token = event.reply_token
-        sending_str =  "NeVeR_LosEs\n" +"nl\n\n" + "羅傑\n" + "roger\n\n"
+        sending_str =  "推薦頻道:\nNeVeR_LosEs\n" +"輸入nl\n\n" + "羅傑\n" + "輸入roger\n\n"
         send_text_message(reply_token, sending_str)
         self.go_back(event);
 
