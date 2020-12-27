@@ -19,6 +19,7 @@ class TocMachine(GraphMachine):
         self.go_back(event);
 
     def on_exit_show_channel(self, event):
+        print("Leave show_channel")
 
     def is_going_to_NL_channel(self, event):
         text = event.message.text
@@ -31,6 +32,7 @@ class TocMachine(GraphMachine):
         send_text_message(reply_token, sending_str)
 
     def on_exit_NL_channel(self, event):
+        print("Leave NL_channel")
 
     def is_going_to_NL_information(self, event):
         text = event.message.text
@@ -44,6 +46,7 @@ class TocMachine(GraphMachine):
         self.go_back(event)
 
     def on_exit_NL_information(self, event):
+        print("Leave NL_information")
 
     def is_going_to_Roger_channel(self, event):
         text = event.message.text
@@ -56,6 +59,7 @@ class TocMachine(GraphMachine):
         send_text_message(reply_token, sending_str)
 
     def on_exit_Roger_channel(self, event):
+        print("Leave Roger_channel")
 
     def is_going_to_Roger_information(self, event):
         text = event.message.text
@@ -69,3 +73,4 @@ class TocMachine(GraphMachine):
         self.go_back(event)
 
     def on_exit_Roger_information(self, event):
+        print("Leave Roger_information")
