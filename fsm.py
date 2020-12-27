@@ -7,6 +7,17 @@ class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
         self.machine = GraphMachine(model=self, **machine_configs)
 
+    def is_going_to_fsm(self, event):
+        text = event.message.text
+        return text.lower() == "fsm"
+
+    def on_enter_fsm(self, event):
+        reply_token = event.reply_token
+        self.go_back(event);
+
+    def on_exit_fsm(self, event):
+        print("Leave fsm")
+
     def is_going_to_show_channel(self, event):
         text = event.message.text
         return text.lower() == "頻道"

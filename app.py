@@ -14,8 +14,14 @@ load_dotenv()
 
 
 machine = TocMachine(
-    states=["init","show_channel", "NL_channel", "NL_information", "Roger_channel", "Roger_information"],
+    states=["init","show_channel", "NL_channel", "NL_information", "Roger_channel", "Roger_information","fsm"],
     transitions=[
+        {
+            "trigger": "advance",
+            "source": "init",
+            "dest": "fsm",
+            "conditions": "is_going_to_fsm",
+        },
         {
             "trigger": "advance",
             "source": "init",
@@ -48,8 +54,9 @@ machine = TocMachine(
         },
         {
             "trigger": "go_back",
-            "source":  ["show_channel","NL_information","Roger_information"],
-            "dest": "init"},
+            "source":  ["show_channel","NL_information","Roger_information","fsm"],
+            "dest": "init"
+        },
     ],
     initial="init",
     auto_transitions=False,
