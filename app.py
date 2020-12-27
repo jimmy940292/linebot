@@ -14,7 +14,7 @@ load_dotenv()
 
 
 machine = TocMachine(
-    states=["init", "NL_channel", "NL_information", "Roger_channel", "Roger_information"],
+    states=["init","show_channel", "NL_channel", "NL_information", "Roger_channel", "Roger_information"],
     transitions=[
         {
             "trigger": "advance",
