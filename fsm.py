@@ -13,12 +13,9 @@ class TocMachine(GraphMachine):
 
     def on_enter_fsm(self, event):
         reply_token = event.reply_token
-        try:
-            # for demo, hard coded image url, line api only support image over https
-            line_bot_api.reply_message(reply_token, ImageSendMessage(original_content_url="https://jimmy30213.herokuapp.com/show-fsm", preview_image_url="https://jimmy30213.herokuapp.com/show-fsm"))
-        except LineBotApiError as e:
-            print(e)
-
+            
+        line_bot_api.reply_message(reply_token, ImageSendMessage(original_content_url="https://jimmy30213.herokuapp.com/show-fsm", preview_image_url="https://jimmy30213.herokuapp.com/show-fsm"))
+        
         self.go_back(event);
 
     def on_exit_fsm(self, event):
