@@ -14,6 +14,7 @@ class TocMachine(GraphMachine):
     def on_enter_fsm(self, event):
         reply_token = event.reply_token
         send_fsm_graph(reply_token)
+        print("Print FSM")
         self.go_back(event);
 
     def on_exit_fsm(self, event):
